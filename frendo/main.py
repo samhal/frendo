@@ -15,6 +15,7 @@ class Frendo:
         else:
             bot = self.get_bot_from_user()
         bot.join()
+        bot.serve()
 
     def get_bot_from_user(self):
         print("Please read the instructions on how to answer following question"
