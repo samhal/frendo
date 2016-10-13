@@ -10,7 +10,7 @@ def parse(regex, text):
 
 
 def parse_user(text):
-    user = parse("\:(.+?)\!", text)
+    user = parse("@([a-zA-Z0-9]+).tmi.twitch.tv", text)
     if(user):
         return user
     else:
@@ -18,15 +18,15 @@ def parse_user(text):
 
 
 def parse_command(text):
-    command = parse("^!([a-zA-Z0-9]+?)( |$)", text)
-    if (command):
+    command = parse(":!([a-zA-Z0-9]+)", text)
+    if command:
         return command
     else:
         return ""
 
 
 def parse_arguments(text):
-    arguments = parse("^!(?:[a-zA-Z0-9]+?) ([a-zA-Z0-9].+)", text)
+    arguments = parse(":!(?:[a-zA-Z0-9]+) (.*)", text)
     if arguments:
         return arguments.split()
     else:
