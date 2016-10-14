@@ -18,8 +18,8 @@ class Frendo:
         bot.serve()
 
     def get_bot_from_user(self):
-        print("Please read the instructions on how to answer following question"
-              "@ https://github.com/samhal/frendo\n")
+        print("Please read the instructions on how to answer following"
+              " question @ https://github.com/samhal/frendo\n")
         bot_username = self.get_bot_username_from_user()
         oauth_token = self.get_oauth_token_from_user()
         channel = self.get_channel_from_user()

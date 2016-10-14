@@ -1,5 +1,6 @@
+#! /usr/bin/python3
+
 import logging
-import datetime
 import socket
 from _thread import start_new_thread
 from parser import *
@@ -9,7 +10,7 @@ from importlib import import_module
 class Bot:
     def __init__(self, bot_username, oauth_token, channel, msg_template="{}"):
         logging.basicConfig(format="[%(levelname)s][%(asctime)s] %(message)s",
-                    datefmt = "%Y-%m-%d %H:%M:%S", level=logging.DEBUG)
+                    datefmt="%Y-%m-%d %H:%M:%S", level=logging.DEBUG)
         self.socket = socket.socket()
         self.bot_username = bot_username
         self.oauth_token = oauth_token
@@ -45,19 +46,19 @@ class Bot:
         # TODO fix
         command = parse_command(msg)
         if command:
-            start_new_thread(self.serve_command, (command,msg,))
+            start_new_thread(self.serve_command, (command, msg,))
 
-    def serve_command(self,command,msg):
+    def serve_command(self, command, msg):
         try:
             module = import_module("commands.{}"
                         .format(command))
-            if hasattr(module,command):
-                function = getattr(module,command)
+            if hasattr(module, command):
+                function = getattr(module, command)
                 user = parse_user(msg)
                 args = parse_arguments(msg)
                 try:
                     logging.info("Executing \"{}\"...".format(command))
-                    self.send_bot_msg(function(user,args))
+                    self.send_bot_msg(function(user, args))
                     logging.info("Successfully executed \"{}\"!"
                                 .format(command))
                 except TypeError as terr:
@@ -66,7 +67,7 @@ class Bot:
                                 .format(command))
             else:
                 logging.info("Module {}.py does not contain function {}"
-                            .format(command,command))
+                            .format(command, command))
         except ImportError:
             logging.info("Could not find module {}.py".format(command))
 
