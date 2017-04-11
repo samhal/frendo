@@ -1,1 +1,4 @@
 theme: jekyll-theme-minimal
+title: Frendo
+description: A twitch-bot engine
+show_downloads: true
