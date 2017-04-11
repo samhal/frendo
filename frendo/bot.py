@@ -22,7 +22,9 @@ class Bot:
         servername = "irc.twitch.tv"
         port = 6667
         logging.info("Connecting...")
+        # connect to server
         self.connect(servername, port)
+        # join the channel
         self.send_join_msgs()
         logging.info("Successfully connected to the channel!")
         self.msg_template = ("PRIVMSG #{} :{}\r\n"
@@ -30,26 +32,32 @@ class Bot:
         self.say_hello()
 
     def serve(self):
+        # start listening to the chat
         while True:
             received_msg = self.socket.recv(2048).decode("ascii", "ignore")
+            # investigate message in new thread
             start_new_thread(self.check_received_msg, (received_msg,))
 
     def check_received_msg(self, msg):
         if "PRIVMSG" in msg:
             self.respond_to_privmsg(msg)
         elif "PING" in msg:
+            # if its a ping we need to respond
             self.respond_to_ping()
 
     def respond_to_ping(self):
         self.send("PONG :tmi.twitch.tv\r\n")
 
     def respond_to_privmsg(self, msg):
+        # check if a command request was made
         command = parse_command(msg)
         if command:
+            # execute the command in a new thread
             start_new_thread(self.serve_command, (command, msg,))
 
     def serve_command(self, command, msg):
         try:
+            # check if command exists
             module = import_module("commands.{}"
                                    .format(command))
             if hasattr(module, command):
@@ -60,6 +68,7 @@ class Bot:
                     logging.debug("User {} requested command \"{}\" with args {}"
                                   .format(user, command, args))
                     logging.info("Executing \"{}\"...".format(command))
+                    # execute the command
                     self.send_bot_msg(function(user, args))
                     logging.info("Successfully executed \"{}\"!"
                                  .format(command))

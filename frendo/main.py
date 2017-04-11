@@ -17,6 +17,7 @@ class Frendo:
         if os.path.isfile(self.configfile_path):
             bot = self.get_bot_from_config()
         else:
+            # config-file not found
             logging.error("Config-file not found at ~/.frendorc")
             exit(0)
         bot.join()
