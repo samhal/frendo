@@ -5,7 +5,7 @@ import socket
 from _thread import start_new_thread
 from importlib import import_module
 
-from frendo.parser import parse_user, parse_arguments, parse_command
+from parser import parse_user, parse_arguments, parse_command
 
 
 class Bot:

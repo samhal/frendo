@@ -3,7 +3,7 @@ import logging
 import os
 from configparser import ConfigParser
 
-from frendo.bot import Bot
+from bot import Bot
 
 
 class Frendo:
@@ -34,7 +34,3 @@ class Frendo:
         msg_template = "{}"
         channel = channel_section["channel_name"]
         return Bot(bot_username, oauth_token, channel, msg_template)
-
-if __name__ == "__main__":
-    frendo = Frendo()
-    frendo.start()
