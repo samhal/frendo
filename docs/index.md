@@ -55,4 +55,4 @@ The output will be:
 
 The `user` parameter will contain the name of the user who requested the command. The `args` parameter
 will contain a list of arguments. For instance if `!helloWorld` then `args = []`,
-if `!helloWorld my name is` then `args = ['my', 'name', 'is']`
+if `!helloWorld my name is` then `args = ['my', 'name', 'is']`.
