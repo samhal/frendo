@@ -27,3 +27,32 @@ Use the account-name and OAuth token to configure the bot.
 1. Navigate to the root of the project.
 2. Run the bot by typing: `python frendo`
 
+# Adding commands
+Frendo supports adding custom commands.
+This is done by adding a python file with the name of the command in `frendo/commands`.
+
+```python
+# frendo/commands/commandName.py
+def commandName(user, args):
+    return botReply
+```
+
+## Example
+Let's say we want a command called
+"helloWorld" that whenever requested replies "Hello World!" with the arguments concatenated to it.
+First we create a file called `helloWorld.py` and save it `frendo/commands` then we create a function with
+the same name as the command which takes the parameters `user` and `args`.
+
+```python
+# frendo/commands/helloWorld.py
+def helloWorld(user, args):
+    return "@{} Hello World! {}".format(user, " ".join(args))
+```
+
+The output will be:
+
+![helloWold](images/helloWorld.png)
+
+The `user` parameter will contain the name of the user who requested the command. The `args` parameter
+will contain a list of arguments. For instance if `!helloWorld` then `args = []`,
+if `!helloWorld my name is` then `args = ['my', 'name', 'is']`
