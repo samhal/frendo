@@ -4,8 +4,7 @@ Frendo is twitch-bot engine written in python which supports writing custom comm
 1. Install Python 3 if you haven't already.
 2. Either download or clone the repository.
 3. Configure the bot using the provided template:
-```
-;Example config for Frendo
+```ini
 [CHANNEL]
 channel_name = lirik
 
