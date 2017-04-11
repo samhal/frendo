@@ -11,7 +11,7 @@ def parse(regex, text):
 
 def parse_user(text):
     user = parse("@([a-zA-Z0-9]+).tmi.twitch.tv", text)
-    if(user):
+    if (user):
         return user
     else:
         return ""
