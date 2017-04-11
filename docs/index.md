@@ -17,7 +17,7 @@ oauth_token = oathkey
 
 The file can be found [here](https://github.com/samhal/frendo/blob/master/etc/example_config.ini) or in `/etc/example_config.ini` in the dowloaded repository.
 
-# Getting a OAut token
+# Getting a OAuth token
 1. Create a new account on [Twitch](https://www.twitch.tv/signup) or login to an existing account.
 2. Connect your to [Twitch Chat OAuth Password Generator](http://www.twitchapps.com/tmi/) to generate OAuth token.
 
